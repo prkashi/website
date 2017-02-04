@@ -35,6 +35,7 @@
 <link rel="stylesheet" href="chessboardjs-0.3.0/css/chessboard-0.3.0.min.css">
     <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script src="chessboardjs-0.3.0/js/chessboard-0.3.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.10.2/chess.js"></script>
     <!-- Responsive CSS -->
     <link href="css/responsive.css" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -110,56 +111,189 @@ $(document).ready(function(){
 </div>  
         </section>         
     </header>
-    <section class="work_area" id="WORK">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12 text-center">
-                    <div class="work_title  wow fadeInUp animated">
-                        <h1>Daily Challenge</h1>
-                        <img src="images/shape.png" alt="">
-                       
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-    </section>
- 
 <div class="container">
      <div class="row">
                 <div class="col-md-12 text-center">
                     <div class="work_title  wow fadeInUp animated">
-                 
-                        <h3><b><u>White to move and mate in two (Difficult)</b></u></h4>
-                        <div id="board1" style="width: 400px;  padding-left: 370px;">
-                       </div>
-<script>
-var position = {
-  d1: 'bN',
-  c2: 'wP',
-  e2: 'wN',
-  h2: 'bQ',
-  h3: 'bP',
-  e3: 'wP',
-  c4: 'wN',
-d5:'bP',
-e5:'bB',
-f5:'bK',
-g6:'wR',
-h7:'wK',
-f7:'wB',
-e7:'wR'
+ 
 
-};
-var board1 = ChessBoard('board1', position);
-</script>
-<h3> <b><u>If you can solve this now, you are an era defining genius!!!!!!</u></b> </h4>
-<h4 style="display: none ">1. Nd6+ &nbsp; &nbsp; Bxd6 </h4>
-<h4 style="display: none ">2. Nd4#</h4>
+                 
+                        <h1><b><u>White to move and mate in two (Difficult)</b></u></h1>
+                        <div id="board">
+                        <p>Status: <span id="status"></span></p>
+<p>FEN: <span id="fen"></span></p>
+<p>PGN: <span id="pgn"></span></p>
+                       </div>
+
+                       <h3 id="result"> Think before you ink </h3>
+<h4 style="display: none ">1. Qg6+ &nbsp; &nbsp; hxg6 </h4>
+<h4 style="display: none ">2. Bxh6#, checkmate</h4>
+<h4 style="display: none ">Sacrifice works in chess</h4>
 
 <button id="show">Show Answer</button>
 <button id="hide">Hide Answer</button>
-                           
+<button id="startPositionBtn"> Initial Position</button>
+
+  <script>
+  var board,
+  game = new Chess('r2qk2r/pb4pp/1n2Pb2/2B2Q2/p1p5/2P5/2B2PPP/RN2R1K1 w kq - 0 1'),
+  //var board2 = ChessBoard('board2');
+  statusEl = $('#status'),
+  fenEl = $('#fen'),
+  pgnEl = $('#pgn');
+
+  
+// do not pick up pieces if the game is over
+// only pick up pieces for the side to move
+  var onDragStart = function(source, piece, position, orientation) {
+  if (game.game_over() === true ||
+      (game.turn() === 'w' && piece.search(/^b/) !== -1) ||
+      (game.turn() === 'b' && piece.search(/^w/) !== -1)) {
+    return false;
+  }
+};
+
+var onDrop = function(source, target) {
+  // see if the move is legal
+  var move = game.move({
+    from: source,
+    to: target,
+    promotion: 'q' // NOTE: always promote to a queen for example simplicity
+  });
+
+  // illegal move
+  if (move === null) return 'snapback';
+
+  updateStatus();
+  
+
+};
+
+// update the board position after the piece snap 
+// for castling, en passant, pawn promotion
+var onSnapEnd = function() {
+  board.position(game.fen());
+};
+
+var updateStatus = function() {
+  var status = '';
+
+  var moveColor = 'White';
+  if (game.turn() === 'b') {
+    moveColor = 'Black';
+  }
+
+  if (game.fen() == 'r2qk2r/pb4p1/1n2PbB1/2B5/p1p5/2P5/5PPP/RN2R1K1 b kq - 0 2') {
+      document.getElementById("result").innerHTML = "Hurray. You solved it!!! ";
+
+  }
+  
+  // checkmate?
+  if (game.in_checkmate() === true) {
+    status = 'Game over, ' + moveColor + ' is in checkmate.';
+   
+  }
+
+  // draw?
+
+  else if (game.in_draw() === true) {
+    status = 'Game over, drawn position';
+  }
+
+  // game still on
+  else {
+    status = moveColor + ' to move';
+
+    // check?
+    if (game.in_check() === true) {
+      status += ', ' + moveColor + ' is in check';
+    }
+  }
+
+  statusEl.html(status);
+  fenEl.html(game.fen());
+  pgnEl.html(game.pgn());
+};
+
+var cfg = {
+  draggable: true,
+  position:
+  {a1:'wR',
+b1:'wN',
+e1:'wR',
+g1:'wK',
+c2:'wB',
+f2:'wP',
+g2:'wP',
+h2:'wP',
+c3:'wP',
+c5:'wB',
+e6:'wP',
+f5:'wQ',
+a8:'bR',
+d8:'bQ',
+e8:'bK',
+h8:'bR',
+a7:'bP',
+b7:'bB',
+g7:'bP',
+h7:'bP',
+b6:'bN',
+f6:'bB',
+a4:'bP',
+c4:'bP'},
+  onDragStart: onDragStart,
+  onDrop: onDrop,
+  onSnapEnd: onSnapEnd,
+  //onChange: onChange
+};
+board = ChessBoard('board', cfg);
+$(window).resize(board.resize);
+
+//updateStatus();
+
+
+$('#startPositionBtn').on('click', function(){
+
+ game = new Chess('r2qk2r/pb4pp/1n2Pb2/2B2Q2/p1p5/2P5/2B2PPP/RN2R1K1 w kq - 0 1');
+ var cfg = {
+  draggable: true,
+  position:
+  {a1:'wR',
+b1:'wN',
+e1:'wR',
+g1:'wK',
+c2:'wB',
+f2:'wP',
+g2:'wP',
+h2:'wP',
+c3:'wP',
+c5:'wB',
+e6:'wP',
+f5:'wQ',
+a8:'bR',
+d8:'bQ',
+e8:'bK',
+h8:'bR',
+a7:'bP',
+b7:'bB',
+g7:'bP',
+h7:'bP',
+b6:'bN',
+f6:'bB',
+a4:'bP',
+c4:'bP'},
+  onDragStart: onDragStart,
+  onDrop: onDrop,
+  onSnapEnd: onSnapEnd,
+  //onChange: onChange
+};
+board = ChessBoard('board', cfg);
+document.getElementById("result").innerHTML = "Think before you ink";
+$(window).resize(board.resize);
+});
+
+</script>                    
  </div>
 <a href="blog.html"><h3> <u>Go back to Lessons</u></h3> </a>
                         </div>
