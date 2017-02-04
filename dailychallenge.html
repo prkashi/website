@@ -168,6 +168,29 @@
 
                 };
 
+                var onMouseoverSquare = function(square, piece) {
+  // get list of possible moves for this square
+                var moves = game.moves({
+                square: square,
+                verbose: true
+                });
+
+  // exit if there are no moves available for this square
+                if (moves.length === 0) return;
+
+  // highlight the square they moused over
+                greySquare(square);
+
+  // highlight the possible squares for this piece
+                for (var i = 0; i < moves.length; i++) {
+                   greySquare(moves[i].to);
+                }
+                };
+
+                var onMouseoutSquare = function(square, piece) {
+                    removeGreySquares();
+                    };
+
 // update the board position after the piece snap 
 // for castling, en passant, pawn promotion
                 var onSnapEnd = function() {
@@ -244,6 +267,8 @@
                   onDragStart: onDragStart,
                   onDrop: onDrop,
                   onSnapEnd: onSnapEnd,
+                  onMouseoutSquare: onMouseoutSquare,
+                  onMouseoverSquare: onMouseoverSquare
   //onChange: onChange
                   };
                   board = ChessBoard('board', cfg);
@@ -285,6 +310,8 @@
                     onDragStart: onDragStart,
                     onDrop: onDrop,
                     onSnapEnd: onSnapEnd,
+                    onMouseoutSquare: onMouseoutSquare,
+                    onMouseoverSquare: onMouseoverSquare
   //onChange: onChange
                     };
                     board = ChessBoard('board', cfg);
