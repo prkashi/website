@@ -116,7 +116,7 @@
 
 
 
-              <h1><b><u>White to move and mate in two (Difficult)</b></u></h1>
+              <h1><b><u>White to move and mate in three (Medium)</b></u></h1>
               <div id="board">
                 <p>Status: <span id="status"></span></p>
                 <p>FEN: <span id="fen"></span></p>
@@ -124,9 +124,9 @@
               </div>
 
               <h3 id="result"> Think before you ink </h3>
-              <h4 style="display: none ">1. Qg6+ &nbsp; &nbsp; hxg6 </h4>
-              <h4 style="display: none ">2. Bxh6#, checkmate</h4>
-              <h4 style="display: none ">Sacrifice works in chess</h4>
+              <h4 style="display: none ">1. Rb8+ &nbsp; &nbsp; Ke7</h4>
+              <h4 style="display: none ">2. Bc5+ &nbsp; &nbsp; Kf7</h4>
+              <h4 style="display: none ">Rf8#, checkmate</h4>
 
               <button id="show">Show Answer</button>
               <button id="hide">Hide Answer</button>
@@ -134,7 +134,7 @@
 
               <script>
                 var board,
-                game = new Chess('r2qk2r/pb4pp/1n2Pb2/2B2Q2/p1p5/2P5/2B2PPP/RN2R1K1 w kq - 0 1'),
+                game = new Chess('3k4/1Rn3pp/r1P2p2/pp3P2/1P1B4/P6P/6P1/6K1 w - - 0 1'),
   //var board2 = ChessBoard('board2');
                 statusEl = $('#status'),
                 fenEl = $('#fen'),
@@ -204,7 +204,7 @@
                   moveColor = 'Black';
                 }
 
-                if (game.fen() == 'r2qk2r/pb4p1/1n2PbB1/2B5/p1p5/2P5/5PPP/RN2R1K1 b kq - 0 2') {
+                if (game.fen() == '5R2/2n2kpp/r1P2p2/ppB2P2/1P6/P6P/6P1/6K1 b - - 5 3') {
                     document.getElementById("result").innerHTML = "Hurray. You solved it!!! ";
 
                 }
@@ -238,31 +238,8 @@
 
                 var cfg = {
                 draggable: true,
-                position:
-                  { a1:'wR',
-                    b1:'wN',
-                    e1:'wR',
-                    g1:'wK',
-                    c2:'wB',
-                    f2:'wP',
-                    g2:'wP',
-                    h2:'wP',
-                    c3:'wP',
-                    c5:'wB',
-                    e6:'wP',
-                    f5:'wQ',
-                    a8:'bR',
-                    d8:'bQ',
-                    e8:'bK',
-                    h8:'bR',
-                    a7:'bP',
-                    b7:'bB',
-                    g7:'bP',
-                    h7:'bP',
-                    b6:'bN',
-                    f6:'bB',
-                    a4:'bP',
-                    c4:'bP'},
+                position: '3k4/1Rn3pp/r1P2p2/pp3P2/1P1B4/P6P/6P1/6K1',
+              
                   onDragStart: onDragStart,
                   onDrop: onDrop,
                   onSnapEnd: onSnapEnd,
@@ -278,34 +255,10 @@
 
                   $('#startPositionBtn').on('click', function(){
 
-                    game = new Chess('r2qk2r/pb4pp/1n2Pb2/2B2Q2/p1p5/2P5/2B2PPP/RN2R1K1 w kq - 0 1');
+                    game = new Chess('3k4/1Rn3pp/r1P2p2/pp3P2/1P1B4/P6P/6P1/6K1 w - - 0 1');
                     var cfg = {
                     draggable: true,
-                    position:
-                    { a1:'wR',
-                      b1:'wN',
-                      e1:'wR',
-                      g1:'wK',
-                      c2:'wB',
-                      f2:'wP',
-                      g2:'wP',
-                      h2:'wP',
-                      c3:'wP',
-                      c5:'wB',
-                      e6:'wP',
-                      f5:'wQ',
-                      a8:'bR',
-                      d8:'bQ',
-                      e8:'bK',
-                      h8:'bR',
-                      a7:'bP',
-                      b7:'bB',
-                      g7:'bP',
-                      h7:'bP',
-                      b6:'bN',
-                      f6:'bB',
-                      a4:'bP',
-                      c4:'bP'},
+                    position: '3k4/1Rn3pp/r1P2p2/pp3P2/1P1B4/P6P/6P1/6K1',
                     onDragStart: onDragStart,
                     onDrop: onDrop,
                     onSnapEnd: onSnapEnd,
