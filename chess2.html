@@ -17,6 +17,7 @@
 
      <!-- Preloader -->
     <link rel="stylesheet" href="css/preloader.css" type="text/css" media="screen, print"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.10.2/chess.js"></script>
 
     <!-- Icon Font-->
     <link rel="stylesheet" href="style.css">
@@ -32,6 +33,9 @@
 
     <!-- Style -->
     <link href="css/style.css" rel="stylesheet">
+      <link rel="stylesheet" href="chessboardjs-0.3.0/css/chessboard-0.3.0.min.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+  <script src="chessboardjs-0.3.0/js/chessboard-0.3.0.min.js"></script>
 
     <!-- Responsive CSS -->
     <link href="css/responsive.css" rel="stylesheet">
@@ -114,21 +118,15 @@
        <div class="row">
             <div class="col-md-12 text-center">
                 <div class="work_title  wow fadeInUp animated">
-                <h4 style="text-align: left; line-height: 200%;">chess is a game governed by set of rules. Each type of chess piece has its own directions to move. A piece moves into a vacant square except while capturing the opponents piece.</br>
+                <h4 style="text-align: left; line-height: 200%;">Chess is a game governed by set of rules. Each type of chess piece has its own directions to move. A piece moves into a vacant square except while capturing the opponents piece.</br>
+
+                <img src="rules.png" style="width: 500px; height: 900px; float: left;">
 
 First let us start with </br>
 
-<b>King</b>  : King moves exactly one square horizontally, vertically or diagonally. King can involve in castling only once in a game. Now what is this magical word “castling”?</br>
-
-Castling is a way of creating a castle and protecting your king. It will be more understandable if I explain it to diagrammatically. See the two boards down </br>
-
-
-First diagram from the left is King side castling and the second one is queen side castling. </br>
-
-Now you understand what is castling and what is the positional change after castling. If you need a deeper understanding start playing chess and do some exercises and you will become the master of it.  In the end of this material, I will provide you some useful links which helps in better understanding of these rules. For now, hold your horses.</br>
+<b>King</b>  : King moves exactly one square horizontally, vertically or diagonally. King can involve in castling only once in a game. Now what is this magical word “castling”? Yoy will see more explanation of castling later in this lesson and at the end of this material, I will provide you some useful links which helps in better understanding of the rulesinvolved while castling. Make sure to study them.. For now, hold on to your horses.</br>
 
 <b>Note: Only during the time of castling the king can move more than one square.</b></br>
-
 
 <b>Queen</b>: Most powerful piece in the board. Queen moves any number of vacant squares in a horizontal, vertical, or diagonal direction. See the diagram below</br>
 
@@ -138,9 +136,31 @@ Now you understand what is castling and what is the positional change after cast
 
 <b>Rook</b>: A rook moves any number of vacant squares in a horizontal or vertical direction. It also is moved when castling.</br>
 <b>Pawn</b>: Pawns have the most complex rules of movement:</br>
-* A pawn moves straight forward one square, if that square is vacant. If it has not yet moved, a pawn also has the option of moving two squares straight forward, provided both squares are vacant. Pawns cannot move backwards.</br>
-* Pawns are the only pieces that capture differently from how they move. A pawn can capture an enemy piece on either of the two squares diagonally in front of the pawn (but cannot move to those squares if they are vacant).</br></h4>
+♟ A pawn moves straight forward one square, if that square is vacant. If it has not yet moved, a pawn also has the option of moving two squares straight forward, provided both squares are vacant. Pawns cannot move backwards.</br>
+♟ Pawns are the only pieces that capture differently from how they move. A pawn can capture an enemy piece on either of the two squares diagonally in front of the pawn (but cannot move to those squares if they are vacant).</br></h4>
 
+
+<h4 style="text-align: left; line-height: 200%;"><b>Castling</b>: Castling is a way of creating a castle and protecting your king. It will be more understandable if I explain it to you diagrammatically. See the two boards down </br>
+
+
+First diagram from the left is King side castling and the second one is queen side castling. </br>
+
+Now you understand what is castling and what is the positional change after castling. If you need a deeper understanding start playing chess and do some exercises and you will become the master of it.  </br>
+
+<img src="enpassant.png" style="float: left; width: 300px; height: 300px;">
+<b>En passant</b>: This is one of the most confusing and most unknown rules in chess which creates a confusion in beginners mind. I will try my best to explain this to you. But again, practice is the only way to master it.</br>
+
+
+
+When a pawn advances two squares from its original square and ends the turn adjacent to a pawn of the opponent's on the same rank, it may be captured by that pawn of the opponent's, as if it had moved only one square forward. This capture is only legal on the opponent's next move immediately following the first pawn's advance. </br>
+
+The diagrams on the left demonstrate an instance of this: if the white pawn moves from a2 to a4, the black pawn on b4 can capture it en passant, moving from b4 to a3 while the white pawn on a4 is removed from the board.</br>
+
+<b> Check </b>: A king is in check when it is attacked by an enemy piece. There are some possible ways to get out of check</br>
+
+♟ Move the king to a square where it is not threatened.</br>
+♟ Capture the threatening piece (possibly with the king).</br>
+♟ Block the check by placing a piece between the king and the opponent's threatening piece </br>
 
 
 
@@ -153,7 +173,9 @@ Now you understand what is castling and what is the positional change after cast
         </div>
     </div>
 
-
+<footer style="background: white";>
+                <h5 style="text-align:center">&copy;2017 All Rights Reserved by Punith R Kashi</h5>
+              </footer>   
 
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
