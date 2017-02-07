@@ -116,7 +116,7 @@
 
 
 
-              <h1><b><u>White to move and mate in three (Difficult)</b></u></h1>
+              <h1><b><u>White to move and mate in two (Medium)</b></u></h1>
               <div id="board">
                 <p>Status: <span id="status"></span></p>
                 <p>FEN: <span id="fen"></span></p>
@@ -124,9 +124,9 @@
               </div>
 
               <h3 id="result"> Think before you ink </h3>
-              <h4 style="display: none ">1. Qd3+ &nbsp; &nbsp; Kc5</h4>
-              <h4 style="display: none ">2. Qd4+ &nbsp; &nbsp; Kb5</h4>
-              <h4 style="display: none ">Qb4#, checkmate</h4>
+              <h4 style="display: none ">1. Bh6++ &nbsp; &nbsp; Kg8</h4>
+            
+              <h4 style="display: none ">Re8#, checkmate</h4>
 
               <button id="show">Show Answer</button>
               <button id="hide">Hide Answer</button>
@@ -134,7 +134,7 @@
 
               <script>
                 var board,
-                game = new Chess('8/1p4pp/p1b1qr2/3k4/8/2P3Q1/PP4PP/4R2K w - - 0 1'),
+                game = new Chess('4rk2/p1b2p1p/1p4p1/8/8/4B3/PP3PPP/4R1K1 w - - 0 1'),
   //var board2 = ChessBoard('board2');
                 statusEl = $('#status'),
                 fenEl = $('#fen'),
@@ -204,7 +204,7 @@
                   moveColor = 'Black';
                 }
 
-                if (game.fen() == '8/1p4pp/p1b1qr2/1k6/1Q6/2P5/PP4PP/4R2K b - - 5 3') {
+                if (game.fen() == '4R1k1/p1b2p1p/1p4pB/8/8/8/PP3PPP/6K1 b - - 0 2') {
                     document.getElementById("result").innerHTML = "Hurray. You solved it!!! ";
 
                 }
@@ -238,7 +238,7 @@
 
                 var cfg = {
                 draggable: true,
-                position: '8/1p4pp/p1b1qr2/3k4/8/2P3Q1/PP4PP/4R2K',
+                position: '4rk2/p1b2p1p/1p4p1/8/8/4B3/PP3PPP/4R1K1',
               
                   onDragStart: onDragStart,
                   onDrop: onDrop,
@@ -255,10 +255,10 @@
 
                   $('#startPositionBtn').on('click', function(){
 
-                    game = new Chess('8/1p4pp/p1b1qr2/3k4/8/2P3Q1/PP4PP/4R2K w - - 0 1');
+                    game = new Chess('4rk2/p1b2p1p/1p4p1/8/8/4B3/PP3PPP/4R1K1 w - - 0 1');
                     var cfg = {
                     draggable: true,
-                    position: '38/1p4pp/p1b1qr2/3k4/8/2P3Q1/PP4PP/4R2K',
+                    position: '4rk2/p1b2p1p/1p4p1/8/8/4B3/PP3PPP/4R1K1',
                     onDragStart: onDragStart,
                     onDrop: onDrop,
                     onSnapEnd: onSnapEnd,
